@@ -21,7 +21,7 @@ class InMemoryTrooperRepositoryTest {
     }
 
     @Test
-    public void testInsertAndRetrieveBarbarians() throws InvalidTroopTypeException {
+    public void shouldBeAbleToTestInsertAndRetrieveBarbarians() throws InvalidTroopTypeException {
         // arrange
         int expectedBarbarianCount = 3;
 
@@ -34,7 +34,7 @@ class InMemoryTrooperRepositoryTest {
     }
 
     @Test
-    public void testInsertAndRetrieveArchers() throws InvalidTroopTypeException {
+    public void shouldBeAbleToTestInsertAndRetrieveArchers() throws InvalidTroopTypeException {
         // arrange
         int expectedArcherCount = 2;
 
@@ -47,7 +47,7 @@ class InMemoryTrooperRepositoryTest {
     }
 
     @Test
-    public void testInsertAndRetrieveTroopers() throws InvalidTroopTypeException {
+    public void shouldBeAbleTestInsertAndRetrieveTroopers() throws InvalidTroopTypeException {
         // arrange
         int expectedBarbarianCount = 3;
         int expectedArcherCount = 2;
