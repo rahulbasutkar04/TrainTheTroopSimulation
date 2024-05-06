@@ -4,7 +4,6 @@ import com.amaap.troopsimulation.repository.TroopRepository;
 import com.amaap.troopsimulation.service.exception.InvalidTroopCountException;
 import com.amaap.troopsimulation.service.exception.InvalidTroopTypeException;
 
-import java.util.List;
 
 public class TroopService {
     private final TroopRepository troopRepository;
@@ -18,15 +17,4 @@ public class TroopService {
         troopRepository.insert(troopCount, troopType);
     }
 
-    public List<Object> getBarbarians() {
-        return troopRepository.getBarbarians();
-    }
-
-
-    public List<Object> getArchers() {
-        return troopRepository.getArchers();
-    }
-    public List<Object> getTroopers(){
-        return troopRepository.getTroopers();
-    }
 }

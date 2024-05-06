@@ -1,8 +1,8 @@
-package com.amaap.troopsimulation;
-import com.amaap.troopsimulation.controller.TroopController;
+package com.amaap.troopsimulation.controller;
 import com.amaap.troopsimulation.controller.dto.HttpStatus;
 import com.amaap.troopsimulation.controller.dto.Response;
-import com.amaap.troopsimulation.repository.InMemoryTrooperRepository;
+import com.amaap.troopsimulation.repository.TroopRepository;
+import com.amaap.troopsimulation.repository.impl.InMemoryTrooperRepository;
 import com.amaap.troopsimulation.repository.db.impl.InMemoryFakeDatabase;
 import com.amaap.troopsimulation.service.exception.InvalidTroopCountException;
 import com.amaap.troopsimulation.service.exception.InvalidTroopTypeException;
@@ -12,8 +12,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TroopControllerTest {
-
-     TroopController troopController=new TroopController(new TroopService(new InMemoryTrooperRepository(new InMemoryFakeDatabase())));
+     InMemoryTrooperRepository inMemoryTrooperRepository=InMemoryTrooperRepository.getInstance(new InMemoryFakeDatabase());
+     TroopService troopService=new TroopService(inMemoryTrooperRepository);
+     TroopController troopController=new TroopController(troopService);
 
     @Test
     void shouldBeAbleToCreateTroopAndGetOKResponse() throws InvalidTroopCountException, InvalidTroopTypeException {
@@ -35,7 +36,7 @@ public class TroopControllerTest {
     void shouldBeAbleToGetBadRequestIfInvalidTroopTypeIsGiven() throws InvalidTroopCountException, InvalidTroopTypeException {
         // arrange
         int troopCount = 10;
-        String troopType = "Trunkers";
+        String troopType = "Truckers";
 
         Response expected = new Response(HttpStatus.BADREQUEST);
 

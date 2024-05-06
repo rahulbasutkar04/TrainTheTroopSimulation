@@ -1,6 +1,7 @@
 package com.amaap.troopsimulation.repository;
 
 import com.amaap.troopsimulation.repository.db.impl.InMemoryFakeDatabase;
+import com.amaap.troopsimulation.repository.impl.InMemoryTrooperRepository;
 import com.amaap.troopsimulation.service.exception.InvalidTroopTypeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,34 +18,10 @@ class InMemoryTrooperRepositoryTest {
     @BeforeEach
     public void setUp() {
         fakeDatabase = new InMemoryFakeDatabase();
-        trooperRepository = new InMemoryTrooperRepository(fakeDatabase);
+        trooperRepository =InMemoryTrooperRepository.getInstance(fakeDatabase);
     }
 
-    @Test
-    public void shouldBeAbleToTestInsertAndRetrieveBarbarians() throws InvalidTroopTypeException {
-        // arrange
-        int expectedBarbarianCount = 3;
 
-        // act
-        trooperRepository.insert(expectedBarbarianCount, "Barbarian");
-        List<Object> barbarians = trooperRepository.getBarbarians();
-
-        // assert
-        assertEquals(expectedBarbarianCount, barbarians.size());
-    }
-
-    @Test
-    public void shouldBeAbleToTestInsertAndRetrieveArchers() throws InvalidTroopTypeException {
-        // arrange
-        int expectedArcherCount = 2;
-
-        // act
-        trooperRepository.insert(expectedArcherCount, "Archer");
-        List<Object> archers = trooperRepository.getArchers();
-
-        // assert
-        assertEquals(expectedArcherCount, archers.size());
-    }
 
     @Test
     public void shouldBeAbleTestInsertAndRetrieveTroopers() throws InvalidTroopTypeException {
