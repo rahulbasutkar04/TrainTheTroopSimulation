@@ -1,4 +1,4 @@
-package com.amaap.troopsimulation;
+package com.amaap.troopsimulation.controller.dto;
 
 import java.util.Objects;
 
