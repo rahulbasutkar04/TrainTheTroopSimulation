@@ -10,6 +10,7 @@ import java.util.List;
 
 public class InMemoryFakeDatabase implements FakeDatabase {
     private List<Object> troopList = new ArrayList<>();
+    private List<Object> trainedTroopers=new ArrayList<>();
     @Override
     public void insertIntoTroopTable(int troopCount, String troopType) throws InvalidTroopTypeException {
         if ("Barbarian".equals(troopType)) {
@@ -28,5 +29,20 @@ public class InMemoryFakeDatabase implements FakeDatabase {
     @Override
     public List<Object> getTroopers() {
         return troopList;
+    }
+
+    @Override
+    public void insertIntoTrainedTrooperTable(Object trainedTrooperData) {
+        trainedTroopers.add(trainedTrooperData);
+    }
+
+    @Override
+    public List<Object> getTrainedTroopers() {
+        return trainedTroopers;
+    }
+
+    public void clearTroopers() {
+        trainedTroopers.clear();
+        troopList.clear();
     }
 }

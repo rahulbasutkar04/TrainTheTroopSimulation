@@ -9,4 +9,8 @@ public interface FakeDatabase {
     void insertIntoTroopTable(int troopCount,String troopType) throws InvalidTroopTypeException;
 
     List<Object> getTroopers();
+
+    void insertIntoTrainedTrooperTable(Object trainedTrooper);
+
+    List<Object> getTrainedTroopers();
 }
