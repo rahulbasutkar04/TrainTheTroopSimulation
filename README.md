@@ -85,66 +85,72 @@ Enum:
 
 Controller:
 
-BarrackController:
+    BarrackController:
 
-states:
-- private final InMemoryTrooperRepository;
-- private  final BarrackService;
+    states:
+     - private final InMemoryTrooperRepository;
+     - private  final BarrackService;
 
-Behaviour:
-- public Response train();
+    Behaviour:
+    - public Response train();
 
 TroopController:
 
-states:
-- private TroopService;
+    states:
+    - private TroopService;
 
-Behaviour:
-- public Response CreateTroop(int troopCount,String TroopType);
+    Behaviour:
+     - public Response CreateTroop(int troopCount,String TroopType);
 
 Service:
 
-BarrackService:
+     BarrackService:
 
-States:
-- private final InMemoryTrooperRepository;
-- private final InMemoryTrainedTrooperRepository;
-- private final Train;
+     States:
+    - private final InMemoryTrooperRepository;
+    - private final InMemoryTrainedTrooperRepository;
+    - private final Train;
 
-Behaviour:
-- public boolean TrainTroopers(List<Troopers>);
+    Behaviour:
+    - public boolean TrainTroopers(List<Troopers>);
 
-TroopService:
+    TroopService:
 
-States:
-- private final TroopRepository;
+    States:
+     - private final TroopRepository;
 
-Behaviour:
-- public void create(int troopCount,String TroopType);
+    Behaviour:
+     - public void create(int troopCount,String TroopType);
 
 Exceptions:
-- Exception regarding type and count.
+
+    - Exception regarding type and count.
 
 Validator:
-- Validates TroopType and Count.
+
+     - Validates TroopType and Count.
 
 Repository:
-- InMemoeryTrooperRepository
-- InMemoryTrainedTrooperRepository
+
+    - InMemoeryTrooperRepository
+     - InMemoryTrainedTrooperRepository
 
 Database:
-- FakeDatabase
+
+    - FakeDatabase
 
 Dependency Module:
 - TroopModule
-
-
 
 Used Design Pattern :
 - Dependency Injection
 
 Future Impelementation:
 - Utilize the Trainig cost To Train the Trooper.
+
+Flow Of Code: 
+- TroopController->TroopeService->Repository->Database(Stores Troops In DB)
+-  Barrack Controller->BarrackSerive->InnerSerive->Train(will take trooper to tain from database)->Repository(to add trained trooper)->Database.
 
 Main Class Output:
 
