@@ -11,6 +11,8 @@ import java.util.List;
 public class InMemoryFakeDatabase implements FakeDatabase {
     private List<Object> troopList = new ArrayList<>();
     private List<Object> trainedTroopers=new ArrayList<>();
+    private int  archerCount=0;
+    private  int barbarianCount=0;
     @Override
     public void insertIntoTroopTable(int troopCount, String troopType) throws InvalidTroopTypeException {
         if ("Barbarian".equals(troopType)) {
@@ -41,8 +43,32 @@ public class InMemoryFakeDatabase implements FakeDatabase {
         return trainedTroopers;
     }
 
-    public void clearTroopers() {
-        trainedTroopers.clear();
-        troopList.clear();
+    @Override
+    public void setTrainedArcherCount(int archerCount) {
+                 this.archerCount=archerCount;
     }
+
+    @Override
+    public void setTrainedBarbarianCount(int barbarianCount) {
+              this.barbarianCount=barbarianCount;
+    }
+
+    @Override
+    public int getTrainedArcherCount() {
+        return archerCount;
+    }
+
+    @Override
+    public int getTrainedBarbarianCount() {
+        return barbarianCount;
+    }
+
+
+    public void clearDatabase() {
+        troopList.clear();
+        trainedTroopers.clear();
+        archerCount=0;
+        barbarianCount=0;
+    }
+
 }
