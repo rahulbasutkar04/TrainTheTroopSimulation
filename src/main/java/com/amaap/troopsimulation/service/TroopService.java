@@ -3,11 +3,13 @@ package com.amaap.troopsimulation.service;
 import com.amaap.troopsimulation.repository.TroopRepository;
 import com.amaap.troopsimulation.service.exception.InvalidTroopCountException;
 import com.amaap.troopsimulation.service.exception.InvalidTroopTypeException;
+import com.google.inject.Inject;
 
 
 public class TroopService {
     private final TroopRepository troopRepository;
 
+    @Inject
     public TroopService(TroopRepository troopRepository) {
         this.troopRepository = troopRepository;
     }

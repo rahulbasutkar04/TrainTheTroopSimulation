@@ -56,4 +56,48 @@ class InMemoryFakeDatabaseTest {
         });
     }
 
+    @Test
+    void shouldBeAbleToInsertAndRetrieveTrainedTroopers() {
+        // arrange
+        Barbarian barbarian = new Barbarian();
+        fakeDatabase.insertIntoTrainedTrooperTable(barbarian);
+
+        // act
+        List<Object> trainedTroopers = fakeDatabase.getTrainedTroopers();
+
+        // assert
+        assertEquals(1, trainedTroopers.size());
+        assertTrue(trainedTroopers.contains(barbarian));
+    }
+
+
+    @Test
+    void shouldBeAbleToSetAndRetrieveTrainedArcherCount() {
+        // arrange
+        int expectedArcherCount = 5;
+
+        // act
+        fakeDatabase.setTrainedArcherCount(expectedArcherCount);
+        int retrievedArcherCount = fakeDatabase.getTrainedArcherCount();
+
+        // assert
+        assertEquals(expectedArcherCount, retrievedArcherCount);
+    }
+
+    @Test
+    void shouldBeAbleToSetAndRetrieveTrainedBarbarianCount() {
+        // arrange
+        int expectedBarbarianCount = 3;
+
+        // act
+        fakeDatabase.setTrainedBarbarianCount(expectedBarbarianCount);
+        int retrievedBarbarianCount = fakeDatabase.getTrainedBarbarianCount();
+
+        // assert
+        assertEquals(expectedBarbarianCount, retrievedBarbarianCount);
+    }
+
+
+
+
 }

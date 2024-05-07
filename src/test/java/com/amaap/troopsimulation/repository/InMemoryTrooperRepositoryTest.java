@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class InMemoryTrooperRepositoryTest {
 
@@ -18,17 +18,16 @@ class InMemoryTrooperRepositoryTest {
     @BeforeEach
     public void setUp() {
         fakeDatabase = new InMemoryFakeDatabase();
-        trooperRepository =InMemoryTrooperRepository.getInstance(fakeDatabase);
+        trooperRepository = InMemoryTrooperRepository.getInstance(fakeDatabase);
     }
-
-
 
     @Test
     public void shouldBeAbleTestInsertAndRetrieveTroopers() throws InvalidTroopTypeException {
         // arrange
+        fakeDatabase.clearDatabase();
         int expectedBarbarianCount = 3;
         int expectedArcherCount = 2;
-        int expectedTotalTroopers = expectedBarbarianCount + expectedArcherCount;
+        int expectedTotalTroopers = 5;
 
         // act
         trooperRepository.insert(expectedBarbarianCount, "Barbarian");

@@ -18,6 +18,7 @@ public class BarrackControllerTest {
     InMemoryTrooperRepository inMemoryTrooperRepository;
     TroopController troopController;
     BarrackService barrackService;
+    BarrackController barrackController;
 
     @BeforeEach
     void setup() {
@@ -25,8 +26,8 @@ public class BarrackControllerTest {
         inMemoryTrooperRepository =InMemoryTrooperRepository.getInstance(fakeDatabase);
         troopController = new TroopController(new TroopService(inMemoryTrooperRepository));
         barrackService = new BarrackService(fakeDatabase);
-
-
+        barrackController = new BarrackController(inMemoryTrooperRepository,barrackService);
+        fakeDatabase.clearDatabase();
     }
 
     @Test
@@ -36,14 +37,25 @@ public class BarrackControllerTest {
         String troopType = "Barbarian";
         troopController.createTroop(troopCount, troopType);
         Response expected = new Response(HttpStatus.OK);
-        BarrackController barrackController = new BarrackController(inMemoryTrooperRepository,barrackService);
-        System.out.println(inMemoryTrooperRepository.getTroopers());
 
         // act
         Response actual = barrackController.train();
+
         //assert
         assertEquals(expected, actual);
 
+    }
+    @Test
+    void shouldBeAbleToRespondWithBadRequestWhenNoTroopersAreToTrain() {
+        // arrange
+        Response expected = new Response(HttpStatus.BADREQUEST);
+        BarrackController barrackController = new BarrackController(inMemoryTrooperRepository,barrackService);
+
+        // act
+        Response actual = barrackController.train();
+
+        //assert
+        assertEquals(expected, actual);
     }
 
 

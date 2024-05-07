@@ -11,7 +11,6 @@ import com.amaap.troopsimulation.service.exception.InvalidTroopTypeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TrainTest {
@@ -29,9 +28,9 @@ class TrainTest {
         troopRepository=InMemoryTrooperRepository.getInstance(inMemoryFakeDatabase);
         troopService=new TroopService(troopRepository);
         troopController=new TroopController(troopService);
-        inMemoryTrainedTrooperRepository=new InMemoryTrainedTrooperRepository(inMemoryFakeDatabase);
+        inMemoryTrainedTrooperRepository=InMemoryTrainedTrooperRepository.getInstance(inMemoryFakeDatabase);
         train=new Train((InMemoryTrooperRepository) troopRepository,inMemoryTrainedTrooperRepository);
-        inMemoryTrainedTrooperRepository.clearTrainedTroopers();
+        inMemoryFakeDatabase.clearDatabase();
     }
 
     @Test
@@ -47,5 +46,36 @@ class TrainTest {
         // assert
         assertTrue(isTrained);
     }
+    @Test
+    void shouldBeAbleToTrainMixedTroopTypesAndAddToTrainedData() throws InvalidTroopCountException, InvalidTroopTypeException {
+        // arrange
+        int archerCount = 5;
+        int barbarianCount = 5;
+        troopController.createTroop(archerCount, "Archer");
+        troopController.createTroop(barbarianCount, "Barbarian");
+
+        // act
+        boolean isTrained = train.trainTroopers();
+
+        // assert
+        assertTrue(isTrained);
+    }
+
+    @Test
+    void shouldBeAbleToTrainTroopersWithInsufficientCapacity() throws InvalidTroopCountException, InvalidTroopTypeException {
+        // arrange
+        int troopCount = 15;
+        troopController.createTroop(troopCount, "Archer");
+
+        // act
+        boolean isTrained = train.trainTroopers();
+
+        // assert
+        assertTrue(isTrained);
+    }
+
+
+
+
 
 }
