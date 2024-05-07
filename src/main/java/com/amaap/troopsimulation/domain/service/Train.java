@@ -5,7 +5,6 @@ import com.amaap.troopsimulation.domain.model.Barbarian;
 import com.amaap.troopsimulation.repository.impl.InMemoryTrainedTrooperRepository;
 import com.amaap.troopsimulation.repository.impl.InMemoryTrooperRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Train {
@@ -58,31 +57,30 @@ public class Train {
         if (inMemoryTrainedTrooperRepository.getTrainedTroopers().size() != 0) {
             isTrained = true;
         }
-        printTrainedTroopsByType();
-
-
+        TrainedTroopsByType();
         return isTrained;
     }
 
-    public void printTrainedTroopsByType() {
-
+    public void TrainedTroopsByType() {
         List<Object> trainedTroops = inMemoryTrainedTrooperRepository.getTrainedTroopers();
-        List<Integer> trainedArcherIds = new ArrayList<>();
-        List<Integer> trainedBarbarianIds = new ArrayList<>();
 
+        int archerCount = 0;
+        int barbarianCount = 0;
+
+        // Counting existing trained archers and barbarians
         for (Object trooper : trainedTroops) {
             if (trooper instanceof Archer) {
-                Archer archer = (Archer) trooper;
-                trainedArcherIds.add(archer.getId());
+                archerCount++;
             } else if (trooper instanceof Barbarian) {
-                Barbarian barbarian = (Barbarian) trooper;
-                trainedBarbarianIds.add(barbarian.getId());
+                barbarianCount++;
             }
         }
-        System.out.println("Trained Archers:" + trainedArcherIds.size());
 
-        System.out.println("Trained Barbarians:" + trainedBarbarianIds.size());
+        // Inserting counts into the repository
+        inMemoryTrainedTrooperRepository.setTrainedArcherCount(archerCount);
+        inMemoryTrainedTrooperRepository.setTrainedBarbarianCount(barbarianCount);
     }
+
 
 
 }
