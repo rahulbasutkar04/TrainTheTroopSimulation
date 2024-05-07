@@ -14,13 +14,14 @@ public class BarrackService {
     private final InMemoryTrainedTrooperRepository inMemoryTrainedTrooperRepository;
     private final Train train;
 
-   @Inject
+    @Inject
     public BarrackService(InMemoryFakeDatabase fakeDatabase) {
         this.troopRepository = InMemoryTrooperRepository.getInstance(fakeDatabase);
-        this.inMemoryTrainedTrooperRepository =InMemoryTrainedTrooperRepository.getInstance(fakeDatabase);
+        this.inMemoryTrainedTrooperRepository = InMemoryTrainedTrooperRepository.getInstance(fakeDatabase);
         this.train = new Train(troopRepository, inMemoryTrainedTrooperRepository);
     }
-    public  boolean trainTroopers(List<Object> troopers) throws InvalidTroopCountException {
+
+    public boolean trainTroopers(List<Object> troopers) throws InvalidTroopCountException {
         if (troopers.size() == 0) {
             throw new InvalidTroopCountException("No Troopers Found To train...");
         }

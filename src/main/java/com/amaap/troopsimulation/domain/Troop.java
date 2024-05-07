@@ -10,7 +10,4 @@ public enum Troop {
         this.typeName = typeName;
     }
 
-    public String getTypeName() {
-        return typeName;
-    }
 }

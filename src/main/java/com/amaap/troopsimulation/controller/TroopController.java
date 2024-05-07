@@ -2,12 +2,14 @@ package com.amaap.troopsimulation.controller;
 
 import com.amaap.troopsimulation.controller.dto.HttpStatus;
 import com.amaap.troopsimulation.controller.dto.Response;
+import com.amaap.troopsimulation.service.TroopService;
 import com.amaap.troopsimulation.service.exception.InvalidTroopCountException;
 import com.amaap.troopsimulation.service.exception.InvalidTroopTypeException;
-import com.amaap.troopsimulation.service.TroopService;
 import com.google.inject.Inject;
 
-;import static com.amaap.troopsimulation.service.validator.TroopNameValidator.isTroopTypeValid;
+import static com.amaap.troopsimulation.service.validator.TroopNameValidator.isTroopTypeValid;
+
+;
 
 public class TroopController {
     private TroopService troopService;

@@ -40,8 +40,8 @@ class TrainTest {
         troopController.createTroop(troopCount, troopType);
 
         // act
-
         boolean isTrained = train.trainTroopers();
+
         // assert
         assertTrue(isTrained);
     }

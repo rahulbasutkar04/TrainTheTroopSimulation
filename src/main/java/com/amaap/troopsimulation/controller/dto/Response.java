@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Response {
     public HttpStatus status;
+
     public Response(HttpStatus status) {
         this.status = status;
     }

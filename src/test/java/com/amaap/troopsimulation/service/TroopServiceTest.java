@@ -32,7 +32,7 @@ class TroopServiceTest {
         });
     }
 
-        @Test
+    @Test
     void shouldBeAbleToGetTheTotalTrooper() throws InvalidTroopCountException, InvalidTroopTypeException {
 
         // arrange
@@ -42,14 +42,15 @@ class TroopServiceTest {
         String Type2 = "Archer";
 
         // act
-        troopService.create(BarbarianCount,Type1);
-        troopService.create(ArcherCount,Type2);
+        troopService.create(BarbarianCount, Type1);
+        troopService.create(ArcherCount, Type2);
+
+        List<Object> totalTrooper = inMemoryFakeDatabase.getTroopers();
 
         // assert
-        List<Object> totalTrooper=inMemoryFakeDatabase.getTroopers();
-
-       assertEquals(20,totalTrooper.size());
+        assertEquals(20, totalTrooper.size());
     }
+
     @Test
     void shouldBeAbleToThrowErrorWhenInvalidTroopTypeIsGiven() {
         // act & assert

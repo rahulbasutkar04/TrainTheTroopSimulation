@@ -9,7 +9,7 @@ import com.google.inject.Inject;
 
 public class BarrackController {
     private final InMemoryTrooperRepository inMemoryTrooperRepository;
-    private  final BarrackService barrackService;
+    private final BarrackService barrackService;
 
 
     @Inject

@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryFakeDatabaseTest {
 
-
     private InMemoryFakeDatabase fakeDatabase;
 
     @BeforeEach
@@ -71,7 +70,7 @@ class InMemoryFakeDatabaseTest {
     }
 
 
-    @Testl
+    @Test
     void shouldBeAbleToSetAndRetrieveTrainedArcherCount() {
         // arrange
         int expectedArcherCount = 5;

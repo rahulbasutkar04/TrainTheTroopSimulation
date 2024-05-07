@@ -1,4 +1,5 @@
 package com.amaap.troopsimulation;
+
 import com.amaap.troopsimulation.repository.TrainedTroopRepository;
 import com.amaap.troopsimulation.repository.TroopRepository;
 import com.amaap.troopsimulation.repository.db.FakeDatabase;
