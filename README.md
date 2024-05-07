@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-Troop training simulation is inspired from Clash of Clans games. As a gaming programmer, you have to create a simulation software using which gamers can train army troops.
+Troop training simulation is inspired by Clash of Clans games. As a gaming programmer, you have to create a simulation software using which gamers can train army troops.
 
 ### Army Troops
 
@@ -36,52 +36,118 @@ Simulate the training and train barbarians and/or archers. As a gamer:
 2. You should be able to see how many troops are trained and available in the troop camp after training completes.
 
 # OOMD Analysis
+
 ---
-## Domain Model
 
-### Troop
-- *TroopType* (Enum)
-    - Barbarian (class)
-    - Archer (class)
+Domain:
 
-### Barracks
-- *Behaviours*
-    - public void trainTroops()
-    - private void trainTrooperAndWait(Barbarian barbarian)
-    - private void trainTrooperAndWait(Archer archer)
-    - `public void transferTrainedTroopsToArmyCamp(ArmyCamp armyCamp)
+Model:
 
-### ArmyCamp
-- *Behaviour*
-    - public void receiveTrainedTroops(LinkedList<Barbarian> barbarians, LinkedList<Archer> archers)
------
-## Service
-- *TrooperService*
-    - Provides training time & cost
-- *BarrackService(Max Capacity)*
-    -  train
-- *ArmyCampService*
-    - Views the trained troopers in the army camp
+Archer:
 
-## Controller
+     States:
+     - int id;
+     - int trainingTime
+     - int trainingCost
+     Behaviour:
+     - getId()
+     - getTrainingTime()
+     - getTrainingCost()
 
-### Trooper(trooperCount, troopType)
-- Calls TrooperService for validation
-- Service interacts with repository (InMemoryTroopRepository)
+Barbarian:
 
-### Barrack
-- Calls BarrackService
-- get from InMemoryBarrackRepository
+     States:
+     - int id;
+     - int trainingTime
+     - int trainingCost
+     Behaviour:
+     - getId()
+     - getTrainingTime()
+     - getTrainingCost()
 
-### ArmyCamp
-- calls ArmyCampService
-- get from InMemoryArmyCampRepository
+Service:
 
-## Repository
-### InMemoryTroopRepository
-### InMemoryBarrackRepository
-### InMemoryArmyCampRepository
-### InMemoryTrainedTroopRepository
+    Train:
+    
+      states:
+      - private final int maxCapacity;
+      - private final InMemoryTrooperRepository;
+      - private final InMemoryTrainedTroopRepository;
+      Behaviour:
+      - public boolean TrainTroops();
+      - public void TrainedTroopsByType();
 
-## db
-### FakeInMemoryDatabase
+Enum:
+
+    Troop
+      - Barbarian 
+      - Archer
+
+Controller:
+
+BarrackController:
+
+states:
+- private final InMemoryTrooperRepository;
+- private  final BarrackService;
+
+Behaviour:
+- public Response train();
+
+TroopController:
+
+states:
+- private TroopService;
+
+Behaviour:
+- public Response CreateTroop(int troopCount,String TroopType);
+
+Service:
+
+BarrackService:
+
+States:
+- private final InMemoryTrooperRepository;
+- private final InMemoryTrainedTrooperRepository;
+- private final Train;
+
+Behaviour:
+- public boolean TrainTroopers(List<Troopers>);
+
+TroopService:
+
+States:
+- private final TroopRepository;
+
+Behaviour:
+- public void create(int troopCount,String TroopType);
+
+Exceptions:
+- Exception regarding type and count.
+
+Validator:
+- Validates TroopType and Count.
+
+Repository:
+- InMemoeryTrooperRepository
+- InMemoryTrainedTrooperRepository
+
+Database:
+- FakeDatabase
+
+Dependency Module:
+- TroopModule
+
+
+
+Used Design Pattern :
+- Dependency Injection
+
+Future Impelementation:
+- Utilize the Trainig cost To Train the Trooper.
+
+Main Class Output:
+
+![img.png](img.png)
+
+![img_1.png](img_1.png)

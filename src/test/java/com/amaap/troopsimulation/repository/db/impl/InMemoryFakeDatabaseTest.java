@@ -71,7 +71,7 @@ class InMemoryFakeDatabaseTest {
     }
 
 
-    @Test
+    @Testl
     void shouldBeAbleToSetAndRetrieveTrainedArcherCount() {
         // arrange
         int expectedArcherCount = 5;

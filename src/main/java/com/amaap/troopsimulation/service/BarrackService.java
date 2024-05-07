@@ -20,7 +20,7 @@ public class BarrackService {
         this.inMemoryTrainedTrooperRepository =InMemoryTrainedTrooperRepository.getInstance(fakeDatabase);
         this.train = new Train(troopRepository, inMemoryTrainedTrooperRepository);
     }
-    public boolean trainTroopers(List<Object> troopers) throws InvalidTroopCountException {
+    public  boolean trainTroopers(List<Object> troopers) throws InvalidTroopCountException {
         if (troopers.size() == 0) {
             throw new InvalidTroopCountException("No Troopers Found To train...");
         }

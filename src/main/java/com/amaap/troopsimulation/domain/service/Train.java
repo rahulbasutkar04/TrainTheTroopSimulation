@@ -19,7 +19,7 @@ public class Train {
     }
 
 
-    public boolean trainTroopers() {
+    public  boolean trainTroopers() {
         boolean isTrained = false;
         List<Object> troopQueue = inMemoryTrooperRepository.getTroopers();
         while (!troopQueue.isEmpty()) {
@@ -61,13 +61,12 @@ public class Train {
         return isTrained;
     }
 
-    public void TrainedTroopsByType() {
+    public  void TrainedTroopsByType() {
         List<Object> trainedTroops = inMemoryTrainedTrooperRepository.getTrainedTroopers();
 
         int archerCount = 0;
         int barbarianCount = 0;
 
-        // Counting existing trained archers and barbarians
         for (Object trooper : trainedTroops) {
             if (trooper instanceof Archer) {
                 archerCount++;
@@ -76,7 +75,6 @@ public class Train {
             }
         }
 
-        // Inserting counts into the repository
         inMemoryTrainedTrooperRepository.setTrainedArcherCount(archerCount);
         inMemoryTrainedTrooperRepository.setTrainedBarbarianCount(barbarianCount);
     }

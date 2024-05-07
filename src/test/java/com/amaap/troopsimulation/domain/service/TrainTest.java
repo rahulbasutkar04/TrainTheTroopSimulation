@@ -11,7 +11,7 @@ import com.amaap.troopsimulation.service.exception.InvalidTroopTypeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TrainTest {
     InMemoryFakeDatabase inMemoryFakeDatabase;
@@ -22,30 +22,30 @@ class TrainTest {
     Train train;
 
     @BeforeEach
-    void setup()
-    {
-        inMemoryFakeDatabase=new InMemoryFakeDatabase();
-        troopRepository=InMemoryTrooperRepository.getInstance(inMemoryFakeDatabase);
-        troopService=new TroopService(troopRepository);
-        troopController=new TroopController(troopService);
-        inMemoryTrainedTrooperRepository=InMemoryTrainedTrooperRepository.getInstance(inMemoryFakeDatabase);
-        train=new Train((InMemoryTrooperRepository) troopRepository,inMemoryTrainedTrooperRepository);
+    void setup() {
+        inMemoryFakeDatabase = new InMemoryFakeDatabase();
+        troopRepository = InMemoryTrooperRepository.getInstance(inMemoryFakeDatabase);
+        troopService = new TroopService(troopRepository);
+        troopController = new TroopController(troopService);
+        inMemoryTrainedTrooperRepository = InMemoryTrainedTrooperRepository.getInstance(inMemoryFakeDatabase);
+        train = new Train((InMemoryTrooperRepository) troopRepository, inMemoryTrainedTrooperRepository);
         inMemoryFakeDatabase.clearDatabase();
     }
 
     @Test
     void shouldBeAbleToTrainTheTrooperAndAddToTrainedData() throws InvalidTroopCountException, InvalidTroopTypeException {
         // arrange
-        int troopCount=9;
-        String troopType="Archer";
-        troopController.createTroop(troopCount,troopType);
+        int troopCount = 9;
+        String troopType = "Archer";
+        troopController.createTroop(troopCount, troopType);
 
         // act
 
-        boolean isTrained=train.trainTroopers();
+        boolean isTrained = train.trainTroopers();
         // assert
         assertTrue(isTrained);
     }
+
     @Test
     void shouldBeAbleToTrainMixedTroopTypesAndAddToTrainedData() throws InvalidTroopCountException, InvalidTroopTypeException {
         // arrange
@@ -73,9 +73,6 @@ class TrainTest {
         // assert
         assertTrue(isTrained);
     }
-
-
-
 
 
 }

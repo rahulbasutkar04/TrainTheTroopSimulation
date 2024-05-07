@@ -23,10 +23,10 @@ public class BarrackControllerTest {
     @BeforeEach
     void setup() {
         fakeDatabase = new InMemoryFakeDatabase();
-        inMemoryTrooperRepository =InMemoryTrooperRepository.getInstance(fakeDatabase);
+        inMemoryTrooperRepository = InMemoryTrooperRepository.getInstance(fakeDatabase);
         troopController = new TroopController(new TroopService(inMemoryTrooperRepository));
         barrackService = new BarrackService(fakeDatabase);
-        barrackController = new BarrackController(inMemoryTrooperRepository,barrackService);
+        barrackController = new BarrackController(inMemoryTrooperRepository, barrackService);
         fakeDatabase.clearDatabase();
     }
 
@@ -45,11 +45,12 @@ public class BarrackControllerTest {
         assertEquals(expected, actual);
 
     }
+
     @Test
     void shouldBeAbleToRespondWithBadRequestWhenNoTroopersAreToTrain() {
         // arrange
         Response expected = new Response(HttpStatus.BADREQUEST);
-        BarrackController barrackController = new BarrackController(inMemoryTrooperRepository,barrackService);
+        BarrackController barrackController = new BarrackController(inMemoryTrooperRepository, barrackService);
 
         // act
         Response actual = barrackController.train();

@@ -1,27 +1,29 @@
 package com.amaap.troopsimulation.service;
 
-import com.amaap.troopsimulation.repository.impl.InMemoryTrooperRepository;
 import com.amaap.troopsimulation.repository.db.impl.InMemoryFakeDatabase;
+import com.amaap.troopsimulation.repository.impl.InMemoryTrooperRepository;
 import com.amaap.troopsimulation.service.exception.InvalidTroopCountException;
 import com.amaap.troopsimulation.service.exception.InvalidTroopTypeException;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TroopServiceTest {
 
     private TroopService troopService;
-    private  InMemoryFakeDatabase inMemoryFakeDatabase;
+    private InMemoryFakeDatabase inMemoryFakeDatabase;
+
     @BeforeEach
     void setup() {
-        inMemoryFakeDatabase =new InMemoryFakeDatabase();
-        InMemoryTrooperRepository inMemoryTrooperRepository=InMemoryTrooperRepository.getInstance(inMemoryFakeDatabase);
+        inMemoryFakeDatabase = new InMemoryFakeDatabase();
+        InMemoryTrooperRepository inMemoryTrooperRepository = InMemoryTrooperRepository.getInstance(inMemoryFakeDatabase);
         troopService = new TroopService(inMemoryTrooperRepository);
     }
+
     @Test
     void shouldBeAbleToThrowErrorWhenInvalidNumberCountOfTroopIsGiven() {
         // act & assert
@@ -30,7 +32,7 @@ class TroopServiceTest {
         });
     }
 
-    @Test
+        @Test
     void shouldBeAbleToGetTheTotalTrooper() throws InvalidTroopCountException, InvalidTroopTypeException {
 
         // arrange
