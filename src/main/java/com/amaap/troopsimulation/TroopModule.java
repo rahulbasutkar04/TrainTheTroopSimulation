@@ -16,6 +16,7 @@ public class TroopModule extends AbstractModule {
         bind(TroopRepository.class).to(InMemoryTrooperRepository.class);
         bind(TrainedTroopRepository.class).to(InMemoryTrainedTrooperRepository.class);
         bind(InMemoryTrooperRepository.class).toInstance(InMemoryTrooperRepository.getInstance(new InMemoryFakeDatabase()));
+        bind(InMemoryTrainedTrooperRepository.class).toInstance(InMemoryTrainedTrooperRepository.getInstance(new InMemoryFakeDatabase()));
         bind(TroopService.class);
         bind(BarrackService.class);
     }
